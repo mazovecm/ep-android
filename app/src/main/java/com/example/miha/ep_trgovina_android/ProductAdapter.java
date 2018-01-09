@@ -9,17 +9,20 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Miha on 8. 01. 2018.
  */
 
-public class ProductAdapter extends ArrayAdapter<Product>{
+public class ProductAdapter extends ArrayAdapter<Product> implements Serializable {
 
     public ProductAdapter(Context context) {
         super(context, 0, new ArrayList<Product>());
     }
+
+
 
     @NonNull
     @Override

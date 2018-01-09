@@ -1,6 +1,7 @@
 package com.example.miha.ep_trgovina_android;
 
 import android.content.Intent;
+import android.os.PersistableBundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements Callback<ProductL
     private SwipeRefreshLayout container;
     private ListView list;
     private ProductAdapter adapter;
+    private ProductList products;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +36,14 @@ public class MainActivity extends AppCompatActivity implements Callback<ProductL
         setContentView(R.layout.activity_main);
 
         list = (ListView) findViewById(R.id.items);
-        adapter = new ProductAdapter(this);
 
+        if (savedInstanceState != null && savedInstanceState.getSerializable("products") != null) {
+            adapter = (ProductAdapter) savedInstanceState.getSerializable("products");
+        }
+
+        else {
+            adapter = new ProductAdapter(this);
+        }
         list.setAdapter(adapter);
 
 
@@ -45,9 +53,12 @@ public class MainActivity extends AppCompatActivity implements Callback<ProductL
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 final Product product = adapter.getItem(i);
+
+                System.out.println(product);
                 if (product != null) {
+                    System.out.println("ID = " + product.getId());
                     final Intent intent = new Intent(MainActivity.this, ProductDetailActivity.class);
-                    intent.putExtra("product_id", product.id);
+                    intent.putExtra("product", product);
                     startActivity(intent);
                 }
             }
@@ -60,15 +71,18 @@ public class MainActivity extends AppCompatActivity implements Callback<ProductL
             }
         });
 
-        Log.i("Klic", "api klic");
-        ProductService.getInstance().getAll().enqueue(MainActivity.this);
+
+        if (savedInstanceState == null) {
+            Log.i("Klic", "api klic");
+            ProductService.getInstance().getAll().enqueue(MainActivity.this);
+        }
 
 
     }
 
     @Override
     public void onResponse(Call<ProductList> call, Response<ProductList> response) {
-        final ProductList products = response.body();
+        products = response.body();
         if (response.isSuccessful()) {
             adapter.clear();
             adapter.addAll(products.getProducts());
@@ -81,32 +95,17 @@ public class MainActivity extends AppCompatActivity implements Callback<ProductL
 
     }
 
-    /* @Override
-    public void onResponse(Call<ProductList> call, Response<ProductList> response) {
-        //final List<Product> products = response.body();
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("products", adapter);
 
-
-        final ProductList products = response.body();
-        if (response.isSuccessful()) {
-            Log.i(TAG, "Products: " + products.size());
-            adapter.clear();
-            adapter.addAll(products);
-        } else {
-            String errorMessage;
-            try {
-                errorMessage = "Napaka: " + response.errorBody().string();
-            } catch (IOException e) {
-                errorMessage = "Napaka.";
-            }
-            Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
-            Log.e(TAG, errorMessage);
-        }
-        container.setRefreshing(false);
     }
 
     @Override
-    public void onFailure(Call<List<Product>> call, Throwable t) {
-        Log.w(TAG, "Error: " + t.getMessage(), t);
-        container.setRefreshing(false);
-    }*/
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        adapter = (ProductAdapter) savedInstanceState.get("products");
+
+    }
 }

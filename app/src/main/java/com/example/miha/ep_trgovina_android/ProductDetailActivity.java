@@ -25,17 +25,18 @@ public class ProductDetailActivity extends AppCompatActivity implements Callback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
 
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        Log.i("Lokacija: ", "ProductDetailActivity");
 
         toolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
 
         tvProductDetail = (TextView) findViewById(R.id.tv_product_detail);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         final int id = getIntent().getIntExtra("product_id", 0);
+
+        System.out.println("id = " + id);
         if (id > 0) {
+            Log.i("Klic", "api klic");
+            System.out.println("ID se enkrat: " + id);
             ProductService.getInstance().get(id).enqueue(this);
         }
 
@@ -50,8 +51,9 @@ public class ProductDetailActivity extends AppCompatActivity implements Callback
         Log.i(TAG, "Got result: " + product);
 
         if (response.isSuccessful()) {
-            tvProductDetail.setText(product.opis);
-            toolbarLayout.setTitle(product.naziv);
+            System.out.println("Response is successful");
+            tvProductDetail.setText("OMG");
+            toolbarLayout.setTitle("WTF");
         } else {
             String errorMessage;
             try {

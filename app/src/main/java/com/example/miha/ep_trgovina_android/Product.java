@@ -1,5 +1,7 @@
 package com.example.miha.ep_trgovina_android;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -8,14 +10,15 @@ import java.io.Serializable;
 
 public class Product implements Serializable {
 
+    //@SerializedName("data")
     public int id;
     public String naziv, opis;
     public double cena, ocena;
 
     @Override
     public String toString() {
-        return String.format("Nazov: %s\nOpis: %s\nCena: %.2f\nOcena: %.2f\n",
-                                    naziv, opis, cena, ocena);
+        return String.format("Id: %d\nNaziv: %s\nOpis: %s\nCena: %.2f\nOcena: %.2f\n",
+                                    id, naziv, opis, cena, ocena);
     }
 
     public int getId() {
