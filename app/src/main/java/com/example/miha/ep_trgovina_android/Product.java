@@ -3,6 +3,7 @@ package com.example.miha.ep_trgovina_android;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Miha on 8. 01. 2018.
@@ -10,10 +11,11 @@ import java.io.Serializable;
 
 public class Product implements Serializable {
 
-    //@SerializedName("data")
     public int id;
     public String naziv, opis;
     public double cena, ocena;
+
+    public List<ProductImages> slike;
 
     @Override
     public String toString() {

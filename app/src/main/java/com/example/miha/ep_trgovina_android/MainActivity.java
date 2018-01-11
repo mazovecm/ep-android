@@ -39,67 +39,72 @@ public class MainActivity extends AppCompatActivity implements Callback<ProductL
 
         if (savedInstanceState != null && savedInstanceState.getSerializable("products") != null) {
             adapter = (ProductAdapter) savedInstanceState.getSerializable("products");
-        }
-
-        else {
+        } else {
             adapter = new ProductAdapter(this);
         }
+
         list.setAdapter(adapter);
-
-
-
-
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 final Product product = adapter.getItem(i);
+                Log.i(TAG, "product: " + product);
 
-                System.out.println(product);
                 if (product != null) {
-                    System.out.println("ID = " + product.getId());
+                    Log.i(TAG, "product_id: " + product.getId());
                     final Intent intent = new Intent(MainActivity.this, ProductDetailActivity.class);
-                    intent.putExtra("product", product);
+                    intent.putExtra("product", product.id);
                     startActivity(intent);
                 }
             }
         });
+
         container = (SwipeRefreshLayout) findViewById(R.id.container);
         container.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                adapter.clear();
+                Log.i("Klic", "api klic");
                 ProductService.getInstance().getAll().enqueue(MainActivity.this);
             }
         });
-
 
         if (savedInstanceState == null) {
             Log.i("Klic", "api klic");
             ProductService.getInstance().getAll().enqueue(MainActivity.this);
         }
-
-
     }
 
     @Override
     public void onResponse(Call<ProductList> call, Response<ProductList> response) {
         products = response.body();
+        Log.i(TAG, "products: " + products);
         if (response.isSuccessful()) {
             adapter.clear();
             adapter.addAll(products.getProducts());
-            Log.i(TAG, "Products: ");
+        } else {
+            String errorMessage;
+            try {
+                errorMessage = "Error: " + response.errorBody().string();
+            } catch (IOException e) {
+                errorMessage = "Error";
+            }
+            Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+            Log.e(TAG, errorMessage);
         }
+        container.setRefreshing(false);
     }
 
     @Override
     public void onFailure(Call<ProductList> call, Throwable t) {
-
+        Log.w(TAG, "Error; " + t.getMessage(), t);
+        container.setRefreshing(false);
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable("products", adapter);
-
     }
 
     @Override

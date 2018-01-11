@@ -25,10 +25,7 @@ public class ProductService {
 
 
         @GET("products/{id}")
-        Call<Product> get(@Path("id") int id);
-
-
-
+        Call<ProductWrapper> get(@Path("id") int id);
     }
 
     private static RestApi instance;
