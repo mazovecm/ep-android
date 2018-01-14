@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements Callback<ProductL
     private ListView list;
     private ProductAdapter adapter;
     private ProductList products;
+    private Button prijava;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,10 +71,20 @@ public class MainActivity extends AppCompatActivity implements Callback<ProductL
             }
         });
 
+        prijava = (Button) findViewById(R.id.prijava);
+        prijava.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
+        });
+
         if (savedInstanceState == null) {
             Log.i("Klic", "api klic");
             ProductService.getInstance().getAll().enqueue(MainActivity.this);
         }
+
+
     }
 
     @Override

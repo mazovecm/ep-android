@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_help"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context="com.example.miha.ep_trgovina_android.UserDataActivity">
+
+    <EditText
+        android:id="@+id/ime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Privzeta vrednost" />
+
+    <EditText
+        android:id="@+id/priimek"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ime"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Privzeta vrednost" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/priimek"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Privzeta vrednost" />
+
+    <EditText
+        android:id="@+id/naslov"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tel_stevilka"
+        android:layout_alignStart="@+id/tel_stevilka"
+        android:layout_centerVertical="true"
+        android:text="Privzeta vrednost" />
+
+    <EditText
+        android:id="@+id/tel_stevilka"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/naslov"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp"
+        android:text="Privzeta vrednost" />
+
+    <EditText
+        android:id="@+id/geslo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="82dp"
+        android:text="Privzeta vrednost" />
+
+    <TextView
+        android:id="@+id/tv_ime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/priimek"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:text="Ime:" />
+
+    <TextView
+        android:id="@+id/tv_priimek"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/priimek"
+        android:layout_alignLeft="@+id/tv_ime"
+        android:layout_marginBottom="10dp"
+        android:text="Priimek:" />
+
+    <TextView
+        android:id="@+id/tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/email"
+        android:layout_alignLeft="@+id/tv_priimek"
+        android:layout_marginBottom="10dp"
+        android:text="Email:" />
+
+    <TextView
+        android:id="@+id/tv_naslov"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_email"
+        android:layout_alignBottom="@+id/naslov"
+        android:text="Naslov:" />
+
+    <TextView
+        android:id="@+id/tv_tel_stevilka"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_naslov"
+        android:layout_alignBottom="@+id/tel_stevilka"
+        android:layout_marginBottom="10dp"
+        android:text="Tel. st.:" />
+
+    <TextView
+        android:id="@+id/tv_geslo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/geslo"
+        android:layout_alignLeft="@+id/tv_tel_stevilka"
+        android:layout_marginBottom="10dp"
+        android:text="Geslo: " />
+
+</RelativeLayout>

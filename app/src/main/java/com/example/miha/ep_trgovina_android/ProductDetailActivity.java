@@ -7,6 +7,7 @@ import android.os.PersistableBundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.AttributeSet;
@@ -38,6 +39,7 @@ public class ProductDetailActivity extends AppCompatActivity implements Callback
     private static final String TAG = ProductDetailActivity.class.getCanonicalName();
     private String url = "http://10.0.2.2:8080";
 
+
     private List<String> urls = new ArrayList<String>();
     private Product product;
     private List<ProductImages> images;
@@ -66,6 +68,8 @@ public class ProductDetailActivity extends AppCompatActivity implements Callback
             Log.i("Klic", "api klic");
             ProductService.getInstance().get(id).enqueue(this);
         }
+
+
     }
 
     @Override
