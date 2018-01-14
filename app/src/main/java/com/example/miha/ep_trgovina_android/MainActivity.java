@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements Callback<ProductL
     private ProductAdapter adapter;
     private ProductList products;
     private Button prijava;
+    private Button odjava, podatki;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,12 +73,43 @@ public class MainActivity extends AppCompatActivity implements Callback<ProductL
         });
 
         prijava = (Button) findViewById(R.id.prijava);
-        prijava.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-            }
-        });
+        odjava = (Button) findViewById(R.id.odjava);
+        podatki = (Button) findViewById(R.id.podatki);
+        final MyApplicationObject app = (MyApplicationObject) getApplication();
+
+        if (app.user == null) {
+            odjava.setVisibility(View.GONE);
+            podatki.setVisibility(View.GONE);
+            prijava.setVisibility(View.VISIBLE);
+            prijava.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                }
+            });
+        }
+        else {
+            app.user.toString();
+            prijava.setVisibility(View.GONE);
+            odjava.setVisibility(View.VISIBLE);
+            podatki.setVisibility(View.VISIBLE);
+            odjava.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    app.user = null;
+                    startActivity(new Intent(MainActivity.this, MainActivity.class));
+
+                }
+            });
+            podatki.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(MainActivity.this, UserDataActivity.class));
+                }
+            });
+        }
+
+
 
         if (savedInstanceState == null) {
             Log.i("Klic", "api klic");

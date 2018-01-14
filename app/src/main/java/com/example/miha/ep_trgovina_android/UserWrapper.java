@@ -1,5 +1,6 @@
 package com.example.miha.ep_trgovina_android;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -10,11 +11,23 @@ import java.io.Serializable;
 
 public class UserWrapper implements Serializable {
 
+    @SerializedName("error")
+    @Expose
+    public boolean error;
     @SerializedName("uporabnik")
-    private User user;
+    @Expose
+    public User user;
 
     public User getUser() {
         return user;
+    }
+
+    public boolean isError() {
+        return error;
+    }
+
+    public void setError(boolean error) {
+        this.error = error;
     }
 
     public void setUser(User user) {

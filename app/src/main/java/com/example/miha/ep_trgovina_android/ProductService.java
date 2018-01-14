@@ -10,7 +10,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 /**
@@ -31,6 +33,17 @@ public class ProductService {
         @FormUrlEncoded
         Call<UserWrapper> login(@Field("email") String email,
                                  @Field("geslo") String geslo);
+
+        @PUT("update")
+        @FormUrlEncoded
+        Call<UserWrapper> update(@Header("Cookie") String cookie,
+                          @Field("ime") String ime,
+                          @Field("priimek") String priimek,
+                          @Field("email") String email,
+                          @Field("naslov") String naslov,
+                          @Field("tel_stevilka") String tel_stevilka);
+
+
     }
 
     private static RestApi instance;
