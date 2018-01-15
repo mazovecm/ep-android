@@ -41,10 +41,9 @@
         android:id="@+id/naslov"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tel_stevilka"
-        android:layout_alignStart="@+id/tel_stevilka"
-        android:layout_centerVertical="true"
-         />
+        android:layout_alignLeft="@+id/email"
+        android:layout_alignStart="@+id/email"
+        android:layout_below="@+id/email" />
 
     <EditText
         android:id="@+id/tel_stevilka"
@@ -53,6 +52,30 @@
         android:layout_below="@+id/naslov"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="27dp" />
+
+    <EditText
+        android:id="@+id/staro_geslo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tel_stevilka"
+        android:layout_centerHorizontal="true"
+        android:inputType="textPassword"/>
+
+    <EditText
+        android:id="@+id/novo_geslo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/staro_geslo"
+        android:layout_centerHorizontal="true"
+        android:inputType="textPassword"/>
+
+    <EditText
+        android:id="@+id/novo_geslo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/novo_geslo"
+        android:layout_centerHorizontal="true"
+        android:inputType="textPassword"/>
 
     <TextView
         android:id="@+id/tv_ime"
@@ -107,8 +130,36 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="37dp"
         android:text="Posodobi" />
+
+    <TextView
+        android:id="@+id/tv_staro_geslo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/novo_geslo"
+        android:layout_alignLeft="@+id/tv_tel_stevilka"
+        android:layout_alignStart="@+id/tv_tel_stevilka"
+        android:text="Staro geslo:" />
+
+    <TextView
+        android:id="@+id/tv_novo_geslo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/novo_geslo2"
+        android:layout_alignEnd="@+id/tv_staro_geslo"
+        android:layout_alignRight="@+id/tv_staro_geslo"
+        android:layout_marginBottom="11dp"
+        android:text="Novo geslo:" />
+
+    <TextView
+        android:id="@+id/tv_novo_geslo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tv_novo_geslo"
+        android:layout_alignStart="@+id/tv_novo_geslo"
+        android:layout_below="@+id/tv_novo_geslo"
+        android:layout_marginTop="11dp"
+        android:text="Potrditev gesla:" />
 
 
 </RelativeLayout>

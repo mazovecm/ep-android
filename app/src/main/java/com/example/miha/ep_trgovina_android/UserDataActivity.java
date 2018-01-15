@@ -23,6 +23,10 @@ public class UserDataActivity extends AppCompatActivity implements Callback<User
     private TextView naslov;
     private TextView tel_stevilka;
 
+    private TextView staro_geslo;
+    private TextView novo_geslo;
+    private TextView novo_geslo2;
+
     private Button posodobi;
 
     private User user;
@@ -37,6 +41,9 @@ public class UserDataActivity extends AppCompatActivity implements Callback<User
         email = (TextView) findViewById(R.id.email);
         naslov = (TextView) findViewById(R.id.naslov);
         tel_stevilka = (TextView) findViewById(R.id.tel_stevilka);
+        staro_geslo = (TextView) findViewById(R.id.staro_geslo);
+        novo_geslo = (TextView) findViewById(R.id.novo_geslo);
+        novo_geslo2 = (TextView) findViewById(R.id.novo_geslo2);
 
         final MyApplicationObject app = (MyApplicationObject) getApplication();
         if (app.user != null) {
@@ -45,6 +52,10 @@ public class UserDataActivity extends AppCompatActivity implements Callback<User
             email.setText(app.user.getEmail());
             naslov.setText(app.user.getNaslov());
             tel_stevilka.setText(app.user.getTel_stevilka());
+            staro_geslo.setText("");
+            novo_geslo.setText("");
+            novo_geslo2.setText("");
+
         }
 
         posodobi = (Button) findViewById(R.id.posodobi);
@@ -56,7 +67,10 @@ public class UserDataActivity extends AppCompatActivity implements Callback<User
                 String currEmail = email.getText().toString();
                 String currNaslov = naslov.getText().toString();
                 String currTel_stevilka = tel_stevilka.getText().toString();
-                ProductService.getInstance().update(app.user.sessionCookie, currIme, currPriimek, currEmail, currNaslov, currTel_stevilka).enqueue(UserDataActivity.this);
+                String currStaro_geslo = staro_geslo.getText().toString();
+                String currNovo_geslo =  novo_geslo.getText().toString();
+                String currNovo_geslo2 = novo_geslo2.getText().toString();
+                ProductService.getInstance().update(app.user.sessionCookie, currIme, currPriimek, currEmail, currNaslov, currTel_stevilka, currStaro_geslo, currNovo_geslo, currNovo_geslo2).enqueue(UserDataActivity.this);
                 startActivity(new Intent(UserDataActivity.this, MainActivity.class));
             }
         });

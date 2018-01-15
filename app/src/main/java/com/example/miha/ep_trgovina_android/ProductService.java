@@ -37,11 +37,15 @@ public class ProductService {
         @PUT("update")
         @FormUrlEncoded
         Call<UserWrapper> update(@Header("Cookie") String cookie,
-                          @Field("ime") String ime,
-                          @Field("priimek") String priimek,
-                          @Field("email") String email,
-                          @Field("naslov") String naslov,
-                          @Field("tel_stevilka") String tel_stevilka);
+                                @Field("ime") String ime,
+                                @Field("priimek") String priimek,
+                                @Field("email") String email,
+                                @Field("naslov") String naslov,
+                                @Field("tel_stevilka") String tel_stevilka,
+                                 @Field("geslo_staro") String geslo_staro,
+                                 @Field("geslo") String geslo,
+                                 @Field("geslo_rep") String geslo_rep
+                                 );
 
 
     }
